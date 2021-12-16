@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import styled from "styled-components";
+import SearchBar from './components/SearchBar';
 
 const Wrapper = styled.section`
   padding: 4em;
@@ -9,7 +10,7 @@ const Wrapper = styled.section`
 function App() {
   return (
     <Wrapper>
-      Ready to Start GitHub Gists App
+      <SearchBar />
     </Wrapper>
   );
 }
