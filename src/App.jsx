@@ -1,11 +1,16 @@
 import React from 'react';
 import './App.css';
+import styled from "styled-components";
+
+const Wrapper = styled.section`
+  padding: 4em;
+`;
 
 function App() {
   return (
-    <p>
+    <Wrapper>
       Ready to Start GitHub Gists App
-    </p>
+    </Wrapper>
   );
 }
 
