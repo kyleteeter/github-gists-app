@@ -14,6 +14,11 @@ const Button = styled.button`
   padding: 0.75em 1.25em;
   border: none;
   border-radius: 5px;
+  @media (max-width: 1017px) {
+    font-size: 0.75em;
+    margin: 0.5em;
+    padding: 0.25em 1em;
+  }
 `;
 
 export default function SearchButtons() {

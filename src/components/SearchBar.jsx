@@ -7,6 +7,10 @@ const SearchBarWrapper = styled.div`
   padding: 4em 4em 1em 4em;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1017px) {
+    flex-direction: column-reverse;
+    padding: 1em;
+  }
 `;
 
 const SearchForm = styled.form`
