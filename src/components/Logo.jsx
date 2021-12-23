@@ -11,7 +11,7 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const Logo = styled.img`
+const LogoImg = styled.img`
   width: 2.8em;
   height: 2.8em;
   @media (max-width: 1017px) {
@@ -28,10 +28,10 @@ const LogoText = styled.div`
   }
 `;
 
-export default function LogoSection() {
+export function Logo() {
   return (
     <LogoWrapper>
-      <Logo src={logo} alt='Logo' /> <LogoText>&nbsp;GitHub Gists</LogoText>
+      <LogoImg src={logo} alt='Logo' /> <LogoText>&nbsp;GitHub Gists</LogoText>
     </LogoWrapper>
   );
 }

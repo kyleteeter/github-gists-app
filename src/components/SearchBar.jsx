@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import SearchButtons from "./Button";
-import LogoSection from "./Logo";
+import { Logo } from ".";
+import { Button, ButtonWrapper } from "../shared-components";
 
 const SearchBarWrapper = styled.div`
   padding: 4em 4em 1em 4em;
@@ -26,7 +26,7 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
-export default function SearchBar() {
+export function SearchBar() {
   return (
     <SearchBarWrapper>
       <SearchForm action='/' method='get'>
@@ -36,9 +36,14 @@ export default function SearchBar() {
           placeholder='Username'
           name='search'
         />
-        <SearchButtons />
+        <ButtonWrapper>
+          <Button primary type='submit'>
+            Get Gists
+          </Button>
+          <Button>Reset</Button>
+        </ButtonWrapper>
       </SearchForm>
-      <LogoSection />
+      <Logo />
     </SearchBarWrapper>
   );
 }

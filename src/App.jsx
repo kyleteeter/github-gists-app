@@ -1,8 +1,6 @@
 import React from "react";
-import "./App.css";
 import styled from "styled-components";
-import SearchBar from "./components/SearchBar";
-import SearchResults from "./components/SearchResults";
+import { SearchBar, SearchResults } from "./components";
 
 const Wrapper = styled.section`
   padding: 4em;

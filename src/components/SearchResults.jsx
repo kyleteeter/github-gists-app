@@ -8,7 +8,7 @@ const SearchResultsWrapper = styled.div`
   }
 `;
 
-export default function SearchResults() {
+export function SearchResults() {
   return (
     <SearchResultsWrapper>
       No gists found. Try searching by a username.
