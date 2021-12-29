@@ -16,14 +16,39 @@ const HorizontalDivide = styled.hr`
   }
 `;
 
-function App() {
-  return (
-    <Wrapper>
-      <SearchBar />
-      <HorizontalDivide />
-      <SearchResults />
-    </Wrapper>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gists: [],
+    };
+  }
+
+  getGists = (username) => {
+    fetch(`https://api.github.com/users/${username}/gists`)
+      .then((response) => response.json())
+      .then((gistList) => {
+        this.setState({ gists: gistList });
+        console.log(this.state.gists);
+      });
+  };
+
+  render() {
+    return (
+      <Wrapper>
+        <SearchBar getGists={this.getGists} />
+        <HorizontalDivide />
+        <SearchResults />
+        <ul>
+          {this.state.gists.map((gist) => (
+            <li key={gist.id}>
+              {gist.id} {gist.url}
+            </li>
+          ))}
+        </ul>
+      </Wrapper>
+    );
+  }
 }
 
 export default App;

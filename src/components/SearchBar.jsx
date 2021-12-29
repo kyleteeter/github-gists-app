@@ -26,24 +26,43 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
-export function SearchBar() {
-  return (
-    <SearchBarWrapper>
-      <SearchForm action='/' method='get'>
-        <Input
-          type='text'
-          id='search-username'
-          placeholder='Username'
-          name='search'
-        />
-        <ButtonWrapper>
-          <Button primary type='submit'>
-            Get Gists
-          </Button>
-          <Button>Reset</Button>
-        </ButtonWrapper>
-      </SearchForm>
-      <Logo />
-    </SearchBarWrapper>
-  );
+export class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.getGists(this.state.value);
+  }
+
+  render() {
+    return (
+      <SearchBarWrapper>
+        <SearchForm>
+          <Input
+            type='text'
+            id='search-username'
+            placeholder='Username'
+            name='search'
+            onChange={this.handleChange}
+          />
+          <ButtonWrapper>
+            <Button primary onClick={this.handleSubmit}>
+              Get Gists
+            </Button>
+            <Button>Reset</Button>
+          </ButtonWrapper>
+        </SearchForm>
+        <Logo />
+      </SearchBarWrapper>
+    );
+  }
 }
