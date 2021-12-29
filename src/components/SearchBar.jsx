@@ -29,18 +29,21 @@ const Input = styled.input`
 export class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = { inputValue: "" };
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
+  handleReset = (event) =>{
     event.preventDefault();
-    this.props.getGists(this.state.value);
+    this.setState({ inputValue: "" });
+  }
+
+  handleChange = (event) => {
+    this.setState({ inputValue: event.target.value });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.getGists(this.state.inputValue);
   }
 
   render() {
@@ -52,13 +55,14 @@ export class SearchBar extends React.Component {
             id='search-username'
             placeholder='Username'
             name='search'
+            value={this.state.inputValue}
             onChange={this.handleChange}
           />
           <ButtonWrapper>
             <Button primary onClick={this.handleSubmit}>
               Get Gists
             </Button>
-            <Button>Reset</Button>
+            <Button onClick={this.handleReset}>Reset</Button>
           </ButtonWrapper>
         </SearchForm>
         <Logo />

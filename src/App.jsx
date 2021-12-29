@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { SearchBar, SearchResults } from "./components";
-
 const Wrapper = styled.section`
   padding: 4em;
   @media (max-width: 1017px) {
@@ -40,6 +39,7 @@ class App extends React.Component {
         <HorizontalDivide />
         <SearchResults />
         <ul>
+          {console.log(this.state.gists)}
           {this.state.gists.map((gist) => (
             <li key={gist.id}>
               {gist.id} {gist.url}
