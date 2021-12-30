@@ -8,10 +8,32 @@ const SearchResultsWrapper = styled.div`
   }
 `;
 
-export function SearchResults() {
+ export function SearchResults(props) {
   return (
     <SearchResultsWrapper>
-      No gists found. Try searching by a username.
+      <div>
+          {props.gists.map((gist) => (
+            <div key={gist.id}>
+              
+              <div>{(gist.description) || 'No Description'} </div>
+              <a href={gist.forks_url} target="_blank" rel="noreferrer">Open Forks</a>
+              <p>Files:</p>
+              <ul>
+                {Object.values(gist.files).map((file, index) => {
+                  return (
+                    <li key={index}>
+                      <a href={file.raw_url} target="_blank" rel="noreferrer">
+                        {file.filename}
+                      </a>
+                      <div>{file.language}</div>
+                    </li>
+                  );
+                })}
+              </ul>
+
+            </div>
+          ))}
+        </div>
     </SearchResultsWrapper>
   );
 }

@@ -26,8 +26,8 @@ class App extends React.Component {
   getGists = (username) => {
     fetch(`https://api.github.com/users/${username}/gists`)
       .then((response) => response.json())
-      .then((gistList) => {
-        this.setState({ gists: gistList });
+      .then((gists) => {
+        this.setState({ gists: gists });
         console.log(this.state.gists);
       });
   };
@@ -37,15 +37,7 @@ class App extends React.Component {
       <Wrapper>
         <SearchBar getGists={this.getGists} />
         <HorizontalDivide />
-        <SearchResults />
-        <ul>
-          {console.log(this.state.gists)}
-          {this.state.gists.map((gist) => (
-            <li key={gist.id}>
-              {gist.id} {gist.url}
-            </li>
-          ))}
-        </ul>
+        <SearchResults gists={this.state.gists}/>
       </Wrapper>
     );
   }

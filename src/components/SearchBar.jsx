@@ -32,19 +32,19 @@ export class SearchBar extends React.Component {
     this.state = { inputValue: "" };
   }
 
-  handleReset = (event) =>{
+  handleReset = (event) => {
     event.preventDefault();
     this.setState({ inputValue: "" });
-  }
+  };
 
   handleChange = (event) => {
     this.setState({ inputValue: event.target.value });
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.getGists(this.state.inputValue);
-  }
+  };
 
   render() {
     return (
