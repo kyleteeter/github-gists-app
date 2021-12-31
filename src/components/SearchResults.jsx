@@ -18,7 +18,7 @@ const SearchResultsWrapper = styled.div`
 
 const Card = styled.div`
   padding: 1.5em 1.5em;
-  border: 1.5px solid #f1f1f1;
+  border: 2px solid #f1f1f1;
   border-radius: 5px;
   margin-bottom: 1em;
   @media (max-width: 1017px) {

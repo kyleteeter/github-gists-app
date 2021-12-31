@@ -20,9 +20,9 @@ const SearchForm = styled.form`
 const Input = styled.input`
   color: #1d1d1d;
   font-size: 1em;
-  margin: 0.25em;
+  margin: 0.5em;
   padding: 0.25em;
-  border: 1.5px solid #f1f1f1;
+  border: 2px solid #f1f1f1;
   border-radius: 5px;
 `;
 
