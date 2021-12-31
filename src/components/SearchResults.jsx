@@ -1,8 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile, faLink } from '@fortawesome/free-solid-svg-icons'
+import { faFile, faLink } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import styled from "styled-components";
-import { ButtonLink, FileLink, HorizontalDivide, Language } from "../shared-components";
+import {
+  ButtonLink,
+  FileLink,
+  HorizontalDivide,
+  Language,
+} from "../shared-components";
 
 const SearchResultsWrapper = styled.div`
   padding: 2em 0.5em;
@@ -27,6 +32,10 @@ const CardTop = styled.div`
   margin: 0.25em;
 `;
 
+const CardTopLinks = styled.div`
+  margin-top: 1em;
+`;
+
 const CardBottom = styled.div`
   display: flex;
   margin: 0.25em;
@@ -34,6 +43,7 @@ const CardBottom = styled.div`
 
 const H3 = styled.h3`
   font-weight: normal;
+  max-width: 60%;
 `;
 
 const H4 = styled.h4`
@@ -48,15 +58,19 @@ export function SearchResults(props) {
           <Card key={gist.id}>
             <CardTop>
               <H3>{gist.description || "No Description"} </H3>
-              <ButtonLink
-                primary
-                href={gist.forks_url}
-                target='_blank'
-                rel='noreferrer'
-              >
-                Open Forks
-              </ButtonLink>
-              <FontAwesomeIcon color="#2EA44E" icon={faLink} />
+              <CardTopLinks>
+                <ButtonLink
+                  primary
+                  href={gist.forks_url}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  Open Forks
+                </ButtonLink>
+                <a href={gist.html_url} target='_blank' rel='noreferrer'>
+                  <FontAwesomeIcon color='#2EA44E' icon={faLink} />
+                </a>
+              </CardTopLinks>
             </CardTop>
             <HorizontalDivide />
             <H4>Files</H4>
@@ -64,7 +78,7 @@ export function SearchResults(props) {
               {Object.values(gist.files).map((file, index) => {
                 return (
                   <CardBottom>
-                    <FontAwesomeIcon color="#CCCCCC" icon={faFile} />
+                    <FontAwesomeIcon color='#CCCCCC' icon={faFile} />
                     <FileLink
                       href={file.raw_url}
                       key={index}
@@ -73,7 +87,16 @@ export function SearchResults(props) {
                     >
                       {file.filename}
                     </FileLink>
-                    <Language>{file.language}</Language>
+                    <Language
+                      style={{
+                        backgroundColor:
+                          file.language === "JavaScript"
+                            ? "#F55245"
+                            : "#315563",
+                      }}
+                    >
+                      {file.language || "No Language Detected"}
+                    </Language>
                   </CardBottom>
                 );
               })}

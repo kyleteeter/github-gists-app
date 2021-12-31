@@ -22,12 +22,12 @@ export const Button = styled.button`
 `;
 
 export const ButtonLink = styled.a`
-  background:#2EA44E;
+  background: #2ea44e;
   color: white;
-  text-decoration:none;
+  text-decoration: none;
   font-size: 1em;
-  margin: 0.75em;
-  padding: 0.5em 1.0em 0em 1em;
+  margin: 0.75em 1em;
+  padding: 0.5em 1em;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -39,7 +39,7 @@ export const ButtonLink = styled.a`
 `;
 
 export const FileLink = styled.a`
-  text-decoration:none;
-  margin-left:5px;
-  color:black;
+  text-decoration: none;
+  margin-left: 5px;
+  color: #1d1d1d;
 `;
