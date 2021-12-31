@@ -20,3 +20,26 @@ export const Button = styled.button`
     padding: 0.25em 1em;
   }
 `;
+
+export const ButtonLink = styled.a`
+  background:#2EA44E;
+  color: white;
+  text-decoration:none;
+  font-size: 1em;
+  margin: 0.75em;
+  padding: 0.5em 1.0em 0em 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  @media (max-width: 1017px) {
+    font-size: 0.75em;
+    margin: 0.5em;
+    padding: 0.25em 1em;
+  }
+`;
+
+export const FileLink = styled.a`
+  text-decoration:none;
+  margin-left:5px;
+  color:black;
+`;

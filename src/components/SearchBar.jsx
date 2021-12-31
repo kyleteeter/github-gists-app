@@ -4,7 +4,7 @@ import { Logo } from ".";
 import { Button, ButtonWrapper } from "../shared-components";
 
 const SearchBarWrapper = styled.div`
-  padding: 4em 4em 1em 4em;
+  padding: 1em 0.25em;
   display: flex;
   justify-content: space-between;
   @media (max-width: 1017px) {
@@ -20,9 +20,9 @@ const SearchForm = styled.form`
 const Input = styled.input`
   color: #959595;
   font-size: 1em;
-  margin: 0.5em;
-  padding: 0.75em 1.25em;
-  border: 1px solid #959595;
+  margin: 0.25em;
+  padding: .25em;
+  border: 1.5px solid #F1F1F1;
   border-radius: 5px;
 `;
 

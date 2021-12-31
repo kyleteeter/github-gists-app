@@ -1,39 +1,86 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFile, faLink } from '@fortawesome/free-solid-svg-icons'
 import React from "react";
 import styled from "styled-components";
+import { ButtonLink, FileLink, HorizontalDivide, Language } from "../shared-components";
 
 const SearchResultsWrapper = styled.div`
-  padding: 2em 4.5em;
+  padding: 2em 0.5em;
   @media (max-width: 1017px) {
     padding: 1.5em;
   }
 `;
 
- export function SearchResults(props) {
+const Card = styled.div`
+  padding: 1.5em 1.5em;
+  border: 1.5px solid #f1f1f1;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  @media (max-width: 1017px) {
+    padding: 0.5em;
+  }
+`;
+
+const CardTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25em;
+`;
+
+const CardBottom = styled.div`
+  display: flex;
+  margin: 0.25em;
+`;
+
+const H3 = styled.h3`
+  font-weight: normal;
+`;
+
+const H4 = styled.h4`
+  font-weight: normal;
+`;
+
+export function SearchResults(props) {
   return (
     <SearchResultsWrapper>
-      <div>
-          {props.gists.map((gist) => (
-            <div key={gist.id}>
-              
-              <div>{(gist.description) || 'No Description'} </div>
-              <a href={gist.forks_url} target="_blank" rel="noreferrer">Open Forks</a>
-              <p>Files:</p>
-              <ul>
-                {Object.values(gist.files).map((file, index) => {
-                  return (
-                    <li key={index}>
-                      <a href={file.raw_url} target="_blank" rel="noreferrer">
-                        {file.filename}
-                      </a>
-                      <div>{file.language}</div>
-                    </li>
-                  );
-                })}
-              </ul>
-
-            </div>
-          ))}
-        </div>
+      <>
+        {props.gists.map((gist) => (
+          <Card key={gist.id}>
+            <CardTop>
+              <H3>{gist.description || "No Description"} </H3>
+              <ButtonLink
+                primary
+                href={gist.forks_url}
+                target='_blank'
+                rel='noreferrer'
+              >
+                Open Forks
+              </ButtonLink>
+              <FontAwesomeIcon color="#2EA44E" icon={faLink} />
+            </CardTop>
+            <HorizontalDivide />
+            <H4>Files</H4>
+            <>
+              {Object.values(gist.files).map((file, index) => {
+                return (
+                  <CardBottom>
+                    <FontAwesomeIcon color="#CCCCCC" icon={faFile} />
+                    <FileLink
+                      href={file.raw_url}
+                      key={index}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {file.filename}
+                    </FileLink>
+                    <Language>{file.language}</Language>
+                  </CardBottom>
+                );
+              })}
+            </>
+          </Card>
+        ))}
+      </>
     </SearchResultsWrapper>
   );
 }
