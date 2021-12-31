@@ -51,59 +51,66 @@ const H4 = styled.h4`
 `;
 
 export function SearchResults(props) {
-  return (
-    <SearchResultsWrapper>
-      <>
-        {props.gists.map((gist) => (
-          <Card key={gist.id}>
-            <CardTop>
-              <H3>{gist.description || "No Description"} </H3>
-              <CardTopLinks>
-                <ButtonLink
-                  primary
-                  href={gist.forks_url}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  Open Forks
-                </ButtonLink>
-                <a href={gist.html_url} target='_blank' rel='noreferrer'>
-                  <FontAwesomeIcon color='#2EA44E' icon={faLink} />
-                </a>
-              </CardTopLinks>
-            </CardTop>
-            <HorizontalDivide />
-            <H4>Files</H4>
-            <>
-              {Object.values(gist.files).map((file, index) => {
-                return (
-                  <CardBottom>
-                    <FontAwesomeIcon color='#CCCCCC' icon={faFile} />
-                    <FileLink
-                      href={file.raw_url}
-                      key={index}
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      {file.filename}
-                    </FileLink>
-                    <Language
-                      style={{
-                        backgroundColor:
-                          file.language === "JavaScript"
-                            ? "#F55245"
-                            : "#315563",
-                      }}
-                    >
-                      {file.language || "No Language Detected"}
-                    </Language>
-                  </CardBottom>
-                );
-              })}
-            </>
-          </Card>
-        ))}
-      </>
-    </SearchResultsWrapper>
-  );
+  const { error, isLoaded, gists } = props;
+  if (error) {
+    return <SearchResultsWrapper>Error: {error.message}</SearchResultsWrapper>;
+  } else if (!isLoaded) {
+    return <SearchResultsWrapper>No Search Results </SearchResultsWrapper>;
+  } else {
+    return (
+      <SearchResultsWrapper>
+        <>
+          {gists.map((gist) => (
+            <Card key={gist.id}>
+              <CardTop>
+                <H3>{gist.description || "No Description"} </H3>
+                <CardTopLinks>
+                  <ButtonLink
+                    primary
+                    href={gist.forks_url}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Open Forks
+                  </ButtonLink>
+                  <a href={gist.html_url} target='_blank' rel='noreferrer'>
+                    <FontAwesomeIcon color='#2EA44E' icon={faLink} />
+                  </a>
+                </CardTopLinks>
+              </CardTop>
+              <HorizontalDivide />
+              <H4>Files</H4>
+              <>
+                {Object.values(gist.files).map((file, index) => {
+                  return (
+                    <CardBottom>
+                      <FontAwesomeIcon color='#CCCCCC' icon={faFile} />
+                      <FileLink
+                        href={file.raw_url}
+                        key={index}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        {file.filename}
+                      </FileLink>
+                      <Language
+                        style={{
+                          backgroundColor:
+                            file.language === "JavaScript"
+                              ? "#F55245"
+                              : "#315563",
+                        }}
+                      >
+                        {file.language || "No Language Detected"}
+                      </Language>
+                    </CardBottom>
+                  );
+                })}
+              </>
+            </Card>
+          ))}
+        </>
+      </SearchResultsWrapper>
+    );
+  }
 }

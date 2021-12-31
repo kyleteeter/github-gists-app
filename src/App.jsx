@@ -15,24 +15,48 @@ class App extends React.Component {
     super(props);
     this.state = {
       gists: [],
+      isLoaded: false,
+      error: null,
     };
   }
 
   getGists = (username) => {
     fetch(`https://api.github.com/users/${username}/gists`)
       .then((response) => response.json())
-      .then((gists) => {
-        this.setState({ gists: gists });
-        console.log(this.state.gists);
-      });
+      .then(
+        (gists) => {
+          if (gists.length === 0){
+            this.setState({
+              isLoaded: false,
+            });
+          } else{
+          this.setState({
+            isLoaded: true,
+            gists: gists,
+          })}
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
   };
 
+  updateLoad = () => {
+    this.setState({
+      isLoaded: false
+    })
+  }
+
   render() {
+    const { error, isLoaded, gists } = this.state;
     return (
       <Wrapper>
-        <SearchBar getGists={this.getGists} />
+        <SearchBar isLoaded={isLoaded} getGists={this.getGists} updateLoad={this.updateLoad} />
         <HorizontalDivide />
-        <SearchResults gists={this.state.gists}/>
+        <SearchResults error={error} isLoaded={isLoaded} gists={gists} />
       </Wrapper>
     );
   }

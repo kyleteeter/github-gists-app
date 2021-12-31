@@ -35,6 +35,7 @@ export class SearchBar extends React.Component {
   handleReset = (event) => {
     event.preventDefault();
     this.setState({ inputValue: "" });
+    this.props.updateLoad();
     this.props.getGists();
   };
 
