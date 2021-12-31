@@ -55,7 +55,7 @@ export function SearchResults(props) {
   if (error) {
     return <SearchResultsWrapper>Error: {error.message}</SearchResultsWrapper>;
   } else if (!isLoaded) {
-    return <SearchResultsWrapper>No Search Results </SearchResultsWrapper>;
+    return <SearchResultsWrapper>No Search Results</SearchResultsWrapper>;
   } else {
     return (
       <SearchResultsWrapper>

@@ -44,17 +44,13 @@ class App extends React.Component {
       );
   };
 
-  updateLoad = () => {
-    this.setState({
-      isLoaded: false
-    })
-  }
+
 
   render() {
     const { error, isLoaded, gists } = this.state;
     return (
       <Wrapper>
-        <SearchBar isLoaded={isLoaded} getGists={this.getGists} updateLoad={this.updateLoad} />
+        <SearchBar isLoaded={isLoaded} getGists={this.getGists} />
         <HorizontalDivide />
         <SearchResults error={error} isLoaded={isLoaded} gists={gists} />
       </Wrapper>
