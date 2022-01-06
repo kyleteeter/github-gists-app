@@ -54,9 +54,11 @@ export function SearchResults(props) {
   const { error, isLoaded, gists } = props;
   if (error) {
     return <SearchResultsWrapper>Error: {error.message}</SearchResultsWrapper>;
-  } else if (!isLoaded) {
+  } else if (isLoaded == false) {
     return <SearchResultsWrapper>No Search Results</SearchResultsWrapper>;
-  } else {
+  } else if (isLoaded == null) {
+    return <SearchResultsWrapper>No Gists Found</SearchResultsWrapper>;
+  }else {
     return (
       <SearchResultsWrapper>
         <>

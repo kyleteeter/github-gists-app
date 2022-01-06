@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react/cjs/react.development";
 import styled from "styled-components";
 import { Logo } from ".";
 import { Button, ButtonWrapper } from "../shared-components";
@@ -26,48 +27,43 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
-export class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { inputValue: "" };
+export function SearchBar(props) {
+  const [inputValue, setInputValue] = useState("");
+
+  function handleReset(event) {
+    event.preventDefault();
+    setInputValue("");
+    props.clearResults();
   }
 
-  handleReset = (event) => {
-    event.preventDefault();
-    this.setState({ inputValue: "" });
-    this.props.getGists();
-  };
-
-  handleChange = (event) => {
-    this.setState({ inputValue: event.target.value });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.getGists(this.state.inputValue);
-  };
-
-  render() {
-    return (
-      <SearchBarWrapper>
-        <SearchForm>
-          <Input
-            type='text'
-            id='search-username'
-            placeholder='Username'
-            name='search'
-            value={this.state.inputValue}
-            onChange={this.handleChange}
-          />
-          <ButtonWrapper>
-            <Button primary onClick={this.handleSubmit}>
-              Get Gists
-            </Button>
-            <Button onClick={this.handleReset}>Reset</Button>
-          </ButtonWrapper>
-        </SearchForm>
-        <Logo />
-      </SearchBarWrapper>
-    );
+  function handleChange(event) {
+    setInputValue(event.target.value);
   }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    props.getGists(inputValue);
+  }
+
+  return (
+    <SearchBarWrapper>
+      <SearchForm>
+        <Input
+          type='text'
+          id='search-username'
+          placeholder='Username'
+          name='search'
+          value={inputValue}
+          onChange={handleChange}
+        />
+        <ButtonWrapper>
+          <Button primary onClick={handleSubmit}>
+            Get Gists
+          </Button>
+          <Button onClick={handleReset}>Reset</Button>
+        </ButtonWrapper>
+      </SearchForm>
+      <Logo />
+    </SearchBarWrapper>
+  );
 }

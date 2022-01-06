@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react/cjs/react.development";
 import styled from "styled-components";
 import { SearchBar, SearchResults } from "./components";
 import { HorizontalDivide } from "./shared-components";
@@ -10,52 +11,39 @@ const Wrapper = styled.section`
   }
 `;
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gists: [],
-      isLoaded: false,
-      error: null,
-    };
-  }
+export default function App() {
+  const [gists, setGists] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState("");
 
-  getGists = (username) => {
+  function getGists(username) {
     fetch(`https://api.github.com/users/${username}/gists`)
       .then((response) => response.json())
       .then(
         (gists) => {
-          if (gists.length === 0){
-            this.setState({
-              isLoaded: false,
-            });
-          } else{
-          this.setState({
-            isLoaded: true,
-            gists: gists,
-          })}
+          if (gists.length === 0) {
+            setIsLoaded(null)
+          } else {
+            setIsLoaded(true);
+            setGists(gists);
+          }
         },
         (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
+          setIsLoaded(true);
+          setError(error);
         }
       );
   };
 
-
-
-  render() {
-    const { error, isLoaded, gists } = this.state;
-    return (
-      <Wrapper>
-        <SearchBar isLoaded={isLoaded} getGists={this.getGists} />
-        <HorizontalDivide />
-        <SearchResults error={error} isLoaded={isLoaded} gists={gists} />
-      </Wrapper>
-    );
+  function clearResults() {
+    setGists([])
   }
-}
 
-export default App;
+  return (
+    <Wrapper>
+      <SearchBar isLoaded={isLoaded} getGists={getGists} clearResults={clearResults} />
+      <HorizontalDivide />
+      <SearchResults error={error} isLoaded={isLoaded} gists={gists} />
+    </Wrapper>
+  );
+}
