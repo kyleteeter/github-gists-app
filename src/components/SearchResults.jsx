@@ -1,7 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile, faLink } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import styled from "styled-components";
+import { linkImg, docImg } from "../assets/";
 import {
   ButtonLink,
   FileLink,
@@ -41,6 +40,11 @@ const CardBottom = styled.div`
   margin: 0.25em;
 `;
 
+const Icon = styled.img`
+  width: 1em;
+  height: 1em;
+`;
+
 const H3 = styled.h3`
   font-weight: normal;
   max-width: 60%;
@@ -58,7 +62,7 @@ export function SearchResults(props) {
     return <SearchResultsWrapper>No Search Results</SearchResultsWrapper>;
   } else if (isLoaded == null) {
     return <SearchResultsWrapper>No Gists Found</SearchResultsWrapper>;
-  }else {
+  } else {
     return (
       <SearchResultsWrapper>
         <>
@@ -76,7 +80,7 @@ export function SearchResults(props) {
                     Open Forks
                   </ButtonLink>
                   <a href={gist.html_url} target='_blank' rel='noreferrer'>
-                    <FontAwesomeIcon color='#2EA44E' icon={faLink} />
+                    <Icon src={linkImg} alt='Link Chain Icon' />
                   </a>
                 </CardTopLinks>
               </CardTop>
@@ -86,7 +90,7 @@ export function SearchResults(props) {
                 {Object.values(gist.files).map((file, index) => {
                   return (
                     <CardBottom>
-                      <FontAwesomeIcon color='#CCCCCC' icon={faFile} />
+                      <Icon src={docImg} alt='Link Chain Icon' />
                       <FileLink
                         href={file.raw_url}
                         key={index}

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/github-logo.png";
+import { logoImg } from "../assets/";
 
 const LogoWrapper = styled.div`
   padding-top: 0.3em;
@@ -31,7 +31,7 @@ const LogoText = styled.div`
 export function Logo() {
   return (
     <LogoWrapper>
-      <LogoImg src={logo} alt='Logo' /> <LogoText>&nbsp;GitHub Gists</LogoText>
+      <LogoImg src={logoImg} alt='Logo' /> <LogoText>&nbsp;GitHub Gists</LogoText>
     </LogoWrapper>
   );
 }
