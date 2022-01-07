@@ -57,10 +57,10 @@ export function SearchBar(props) {
           onChange={handleChange}
         />
         <ButtonWrapper>
-          <Button primary onClick={handleSubmit}>
+          <Button primary onClick={handleSubmit} style={{margin: '0.5em'}}>
             Get Gists
           </Button>
-          <Button onClick={handleReset}>Reset</Button>
+          <Button onClick={handleReset} style={{margin: '0.5em'}}>Reset</Button>
         </ButtonWrapper>
       </SearchForm>
       <Logo />

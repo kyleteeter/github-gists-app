@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { linkImg, docImg } from "../assets/";
-import {
-  ButtonLink,
-  FileLink,
-  HorizontalDivide,
-  Language,
-} from "../shared-components";
+import { ButtonLink, FileLink, HorizontalDivide } from "../shared-components";
 
 const SearchResultsWrapper = styled.div`
   padding: 2em 0.5em;
@@ -54,13 +49,47 @@ const H4 = styled.h4`
   font-weight: normal;
 `;
 
+function bgColor(language) {
+  if (language === "JavaScript") {
+    return "#F6695F";
+  }
+  if (language === "Ruby") {
+    return "#305562";
+  }
+  if (language === "Text") {
+    return "darkblue";
+  }
+  if (language === "Markdown") {
+    return "green";
+  }
+  if (language === "JSON") {
+    return "orange";
+  } else {
+    return "black";
+  }
+}
+
+const Language = styled.div`
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  margin-left: 1em;
+  padding: 0.25em 0.5em;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.75em;
+  @media (max-width: 1017px) {
+    margin-left: 0.5em;
+  }
+`;
+
 export function SearchResults(props) {
   const { error, isLoaded, gists } = props;
   if (error) {
     return <SearchResultsWrapper>Error: {error.message}</SearchResultsWrapper>;
-  } else if (isLoaded == false) {
+  } else if (isLoaded === false) {
     return <SearchResultsWrapper>No Search Results</SearchResultsWrapper>;
-  } else if (isLoaded == null) {
+  } else if (isLoaded === null) {
     return <SearchResultsWrapper>No Gists Found</SearchResultsWrapper>;
   } else {
     return (
@@ -76,6 +105,7 @@ export function SearchResults(props) {
                     href={gist.forks_url}
                     target='_blank'
                     rel='noreferrer'
+                    style={{ margin: "0.75em 1em" }}
                   >
                     Open Forks
                   </ButtonLink>
@@ -87,13 +117,13 @@ export function SearchResults(props) {
               <HorizontalDivide />
               <H4>Files</H4>
               <>
-                {Object.values(gist.files).map((file, index) => {
+                {Object.values(gist.files).map((file) => {
                   return (
                     <CardBottom>
                       <Icon src={docImg} alt='Link Chain Icon' />
                       <FileLink
                         href={file.raw_url}
-                        key={index}
+                        key={file.id}
                         target='_blank'
                         rel='noreferrer'
                       >
@@ -101,10 +131,7 @@ export function SearchResults(props) {
                       </FileLink>
                       <Language
                         style={{
-                          backgroundColor:
-                            file.language === "JavaScript"
-                              ? "#F55245"
-                              : "#315563",
+                          backgroundColor: bgColor(file.language),
                         }}
                       >
                         {file.language || "No Language Detected"}
