@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { linkImg, docImg } from "../assets/";
 import { ButtonLink, FileLink, HorizontalDivide } from "../shared-components";
@@ -123,7 +122,7 @@ export function SearchResults(props) {
                       <Icon src={docImg} alt='Link Chain Icon' />
                       <FileLink
                         href={file.raw_url}
-                        key={file.id}
+                        key={`file${gist.id}`}
                         target='_blank'
                         rel='noreferrer'
                       >

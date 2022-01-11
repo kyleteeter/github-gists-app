@@ -1,12 +1,10 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import styled from "styled-components";
 import { SearchBar, SearchResults } from "./components";
 import { HorizontalDivide } from "./shared-components";
+import './assets/css/fonts.css';
 
 const Wrapper = styled.section`
-  @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap");
-  font-family: "Asap", sans-serif;
   font-family: "Roboto Condensed", sans-serif;
   margin: 4.5em;
   @media (max-width: 1017px) {

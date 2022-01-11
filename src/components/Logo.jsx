@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { logoImg } from "../assets/";
 
@@ -31,7 +30,8 @@ const LogoText = styled.div`
 export function Logo() {
   return (
     <LogoWrapper>
-      <LogoImg src={logoImg} alt='Logo' /> <LogoText>&nbsp;GitHub Gists</LogoText>
+      <LogoImg src={logoImg} alt='Logo' />{" "}
+      <LogoText>&nbsp;GitHub Gists</LogoText>
     </LogoWrapper>
   );
 }

@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import styled from "styled-components";
 import { Logo } from ".";
 import { Button, ButtonWrapper } from "../shared-components";
@@ -57,10 +56,12 @@ export function SearchBar(props) {
           onChange={handleChange}
         />
         <ButtonWrapper>
-          <Button primary onClick={handleSubmit} style={{margin: '0.5em'}}>
+          <Button primary onClick={handleSubmit} style={{ margin: "0.5em" }}>
             Get Gists
           </Button>
-          <Button onClick={handleReset} style={{margin: '0.5em'}}>Reset</Button>
+          <Button onClick={handleReset} style={{ margin: "0.5em" }}>
+            Reset
+          </Button>
         </ButtonWrapper>
       </SearchForm>
       <Logo />
