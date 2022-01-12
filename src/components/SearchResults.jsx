@@ -109,6 +109,7 @@ export function SearchResults({ error, isLoaded, gists }) {
                       key={`file${gist.id}`}
                       target='_blank'
                       rel='noreferrer'
+                      style={{marginLeft:5}}
                     >
                       {file.filename}
                     </FileLink>
