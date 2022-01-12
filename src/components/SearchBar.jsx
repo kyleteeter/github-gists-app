@@ -26,13 +26,13 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
-export function SearchBar(props) {
+export function SearchBar({clearResults, getGists}) {
   const [inputValue, setInputValue] = useState("");
 
   function handleReset(event) {
     event.preventDefault();
     setInputValue("");
-    props.clearResults();
+    clearResults();
   }
 
   function handleChange(event) {
@@ -41,7 +41,7 @@ export function SearchBar(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.getGists(inputValue);
+    getGists(inputValue);
   }
 
   return (

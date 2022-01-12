@@ -70,8 +70,7 @@ const Language = styled.div`
   }
 `;
 
-export function SearchResults(props) {
-  const { error, isLoaded, gists } = props;
+export function SearchResults({ error, isLoaded, gists }) {
 
   if (error) { return <SearchResultsWrapper>Error: {error.message}</SearchResultsWrapper>};
   if (isLoaded === false) { return <SearchResultsWrapper>No Results</SearchResultsWrapper>};
