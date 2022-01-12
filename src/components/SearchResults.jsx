@@ -48,24 +48,12 @@ const H4 = styled.h4`
   font-weight: normal;
 `;
 
-function bgColor(language) {
-  if (language === "JavaScript") {
-    return "#F6695F";
-  }
-  if (language === "Ruby") {
-    return "#305562";
-  }
-  if (language === "Text") {
-    return "darkblue";
-  }
-  if (language === "Markdown") {
-    return "green";
-  }
-  if (language === "JSON") {
-    return "orange";
-  } else {
-    return "black";
-  }
+const bgColor = {
+  JavaScript: "#F6695F",
+  Ruby: "#305562",
+  Text: "darkblue",
+  Markdown: "green",
+  JSON: "orange",
 }
 
 const Language = styled.div`
@@ -84,65 +72,61 @@ const Language = styled.div`
 
 export function SearchResults(props) {
   const { error, isLoaded, gists } = props;
-  if (error) {
-    return <SearchResultsWrapper>Error: {error.message}</SearchResultsWrapper>;
-  } else if (isLoaded === false) {
-    return <SearchResultsWrapper>No Search Results</SearchResultsWrapper>;
-  } else if (isLoaded === null) {
-    return <SearchResultsWrapper>No Gists Found</SearchResultsWrapper>;
-  } else {
-    return (
-      <SearchResultsWrapper>
-        <>
-          {gists.map((gist) => (
-            <Card key={gist.id}>
-              <CardTop>
-                <H3>{gist.description || "No Description"} </H3>
-                <CardTopLinks>
-                  <ButtonLink
-                    primary
-                    href={gist.forks_url}
-                    target='_blank'
-                    rel='noreferrer'
-                    style={{ margin: "0.75em 1em" }}
-                  >
-                    Open Forks
-                  </ButtonLink>
-                  <a href={gist.html_url} target='_blank' rel='noreferrer'>
-                    <Icon src={linkImg} alt='Link Chain Icon' />
-                  </a>
-                </CardTopLinks>
-              </CardTop>
-              <HorizontalDivide />
-              <H4>Files</H4>
-              <>
-                {Object.values(gist.files).map((file) => {
-                  return (
-                    <CardBottom>
-                      <Icon src={docImg} alt='Link Chain Icon' />
-                      <FileLink
-                        href={file.raw_url}
-                        key={`file${gist.id}`}
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        {file.filename}
-                      </FileLink>
-                      <Language
-                        style={{
-                          backgroundColor: bgColor(file.language),
-                        }}
-                      >
-                        {file.language || "No Language Detected"}
-                      </Language>
-                    </CardBottom>
-                  );
-                })}
-              </>
-            </Card>
-          ))}
-        </>
-      </SearchResultsWrapper>
-    );
-  }
+
+  if (error) { return <SearchResultsWrapper>Error: {error.message}</SearchResultsWrapper>};
+  if (isLoaded === false) { return <SearchResultsWrapper>No Results</SearchResultsWrapper>};
+
+  return (
+    <SearchResultsWrapper>
+      <>
+        {gists.map((gist) => (
+          <Card key={gist.id}>
+            <CardTop>
+              <H3>{gist.description || "No Description"} </H3>
+              <CardTopLinks>
+                <ButtonLink
+                  primary
+                  href={gist.forks_url}
+                  target='_blank'
+                  rel='noreferrer'
+                  style={{ margin: "0.75em 1em" }}
+                >
+                  Open Forks
+                </ButtonLink>
+                <a href={gist.html_url} target='_blank' rel='noreferrer'>
+                  <Icon src={linkImg} alt='Link Chain Icon' />
+                </a>
+              </CardTopLinks>
+            </CardTop>
+            <HorizontalDivide />
+            <H4>Files</H4>
+            <>
+              {Object.values(gist.files).map((file) => {
+                return (
+                  <CardBottom>
+                    <Icon src={docImg} alt='Link Chain Icon' />
+                    <FileLink
+                      href={file.raw_url}
+                      key={`file${gist.id}`}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {file.filename}
+                    </FileLink>
+                    <Language
+                      style={{
+                        backgroundColor: bgColor[file.language] ? bgColor[file.language] : "black",
+                      }}
+                    >
+                      {file.language || "No Language Detected"}
+                    </Language>
+                  </CardBottom>
+                );
+              })}
+            </>
+          </Card>
+        ))}
+      </>
+    </SearchResultsWrapper>
+  );
 }

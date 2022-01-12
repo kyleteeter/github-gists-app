@@ -36,6 +36,5 @@ export const ButtonLink = styled.a`
 
 export const FileLink = styled.a`
   text-decoration: none;
-  margin-left: 5px;
   color: #1d1d1d;
 `;

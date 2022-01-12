@@ -12,7 +12,7 @@ const Wrapper = styled.section`
   }
 `;
 
-export default function App() {
+export function App() {
   const [gists, setGists] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState("");
@@ -23,7 +23,7 @@ export default function App() {
       .then(
         (gists) => {
           if (gists.length === 0) {
-            setIsLoaded(null);
+            setIsLoaded(false);
           } else {
             setIsLoaded(true);
             setGists(gists);
