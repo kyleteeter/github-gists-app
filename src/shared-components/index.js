@@ -1,1 +1,2 @@
-export { Button, ButtonWrapper } from "./Button";
+export { HorizontalDivide } from "./HorizontalDivide";
+export { Button, ButtonWrapper, ButtonLink, FileLink } from "./Button";

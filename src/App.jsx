@@ -1,29 +1,54 @@
-import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { SearchBar, SearchResults } from "./components";
+import { HorizontalDivide } from "./shared-components";
+import './assets/css/fonts.css';
 
 const Wrapper = styled.section`
-  padding: 4em;
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 4.5em;
   @media (max-width: 1017px) {
-    padding: 1em;
+    margin: 1em;
   }
 `;
 
-const HorizontalDivide = styled.hr`
-  margin: 0em 4.5em;
-  @media (max-width: 1017px) {
-    margin: 0em 1.5em;
-  }
-`;
+export function App() {
+  const [gists, setGists] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState("");
 
-function App() {
+  function getGists(username) {
+    fetch(`https://api.github.com/users/${username}/gists`)
+      .then((response) => response.json())
+      .then(
+        (gists) => {
+          if (gists.length === 0) {
+            setIsLoaded(false);
+          } else {
+            setIsLoaded(true);
+            setGists(gists);
+          }
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }
+
+  function clearResults() {
+    setGists([]);
+  }
+
   return (
     <Wrapper>
-      <SearchBar />
+      <SearchBar
+        isLoaded={isLoaded}
+        getGists={getGists}
+        clearResults={clearResults}
+      />
       <HorizontalDivide />
-      <SearchResults />
+      <SearchResults error={error} isLoaded={isLoaded} gists={gists} />
     </Wrapper>
   );
 }
-
-export default App;

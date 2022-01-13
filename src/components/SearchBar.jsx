@@ -1,10 +1,10 @@
-import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { Logo } from ".";
 import { Button, ButtonWrapper } from "../shared-components";
 
 const SearchBarWrapper = styled.div`
-  padding: 4em 4em 1em 4em;
+  padding: 1em 0.25em;
   display: flex;
   justify-content: space-between;
   @media (max-width: 1017px) {
@@ -18,29 +18,50 @@ const SearchForm = styled.form`
 `;
 
 const Input = styled.input`
-  color: #959595;
+  color: #1d1d1d;
   font-size: 1em;
   margin: 0.5em;
-  padding: 0.75em 1.25em;
-  border: 1px solid #959595;
+  padding: 0.25em;
+  border: 2px solid #f1f1f1;
   border-radius: 5px;
 `;
 
-export function SearchBar() {
+export function SearchBar({clearResults, getGists}) {
+  const [inputValue, setInputValue] = useState("");
+
+  function handleReset(event) {
+    event.preventDefault();
+    setInputValue("");
+    clearResults();
+  }
+
+  function handleChange(event) {
+    setInputValue(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    getGists(inputValue);
+  }
+
   return (
     <SearchBarWrapper>
-      <SearchForm action='/' method='get'>
+      <SearchForm>
         <Input
           type='text'
           id='search-username'
           placeholder='Username'
           name='search'
+          value={inputValue}
+          onChange={handleChange}
         />
         <ButtonWrapper>
-          <Button primary type='submit'>
+          <Button primary onClick={handleSubmit} style={{ margin: "0.5em" }}>
             Get Gists
           </Button>
-          <Button>Reset</Button>
+          <Button onClick={handleReset} style={{ margin: "0.5em" }}>
+            Reset
+          </Button>
         </ButtonWrapper>
       </SearchForm>
       <Logo />
