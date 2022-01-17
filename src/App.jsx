@@ -17,7 +17,7 @@ export function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState("");
 
-  function getGists(username) {
+  const getGists = (username) => {
     fetch(`https://api.github.com/users/${username}/gists`)
       .then((response) => response.json())
       .then(
@@ -36,7 +36,7 @@ export function App() {
       );
   }
 
-  function clearResults() {
+  const clearResults = () => {
     setGists([]);
   }
 

@@ -29,17 +29,17 @@ const Input = styled.input`
 export function SearchBar({clearResults, getGists}) {
   const [inputValue, setInputValue] = useState("");
 
-  function handleReset(event) {
+  const handleReset = (event) => {
     event.preventDefault();
     setInputValue("");
     clearResults();
   }
 
-  function handleChange(event) {
+  const handleChange = (event) => {
     setInputValue(event.target.value);
   }
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     getGists(inputValue);
   }
