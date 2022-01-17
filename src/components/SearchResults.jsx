@@ -20,20 +20,21 @@ const Card = styled.div`
   }
 `;
 
-
-
 export function SearchResults({ error, isLoaded, gists }) {
   const [forks, setForks] = useState("");
+  const [gistId, setGistId] = useState("");
 
-  const getForks = (url) => {
+  const getForks = (url, id) => {
     if (!forks) {
       fetch(url)
         .then((response) => response.json())
         .then((forks) => {
           setForks(forks);
+          setGistId(id);
         });
     } else {
       setForks("");
+      setGistId("");
     }
   };
 
@@ -49,10 +50,10 @@ export function SearchResults({ error, isLoaded, gists }) {
       <>
         {gists.map((gist) => (
           <Card key={gist.id}>
-            <CardTop gist={gist} getForks={getForks} />
+            <CardTop gist={gist} getForks={getForks} gistId={gistId} />
             <HorizontalDivide />
-            <Files files={gist.files} gistid={gist.id} />
-            <Forks forks={forks} />
+            <Files files={gist.files} id={gist.id} />
+            {gist.id === gistId ? <Forks forks={forks} /> : ""}
           </Card>
         ))}
       </>

@@ -33,7 +33,7 @@ const H4 = styled.h4`
   font-weight: normal;
 `;
 
-export function Files({ files, gistid }) {
+export function Files({ files, id }) {
   return (
     <>
       <H4>Files</H4>
@@ -43,7 +43,7 @@ export function Files({ files, gistid }) {
             <Icon src={docImg} alt='Link Chain Icon' />
             <FileLink
               href={file.raw_url}
-              key={`file${gistid}`}
+              key={`file${id}`}
               target='_blank'
               rel='noreferrer'
               style={{ marginLeft: 5 }}

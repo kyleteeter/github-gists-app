@@ -17,7 +17,7 @@ const H3 = styled.h3`
   max-width: 60%;
 `;
 
-export function CardTop ({ gist, getForks }) {
+export function CardTop({ gist, getForks, gistId }) {
   return (
     <CardSection>
       <H3>{gist.description || "No Description"} </H3>
@@ -26,9 +26,9 @@ export function CardTop ({ gist, getForks }) {
           primary
           key={`forks${gist.id}`}
           style={{ margin: "0.75em 1em" }}
-          onClick={() => getForks(gist.forks_url)}
+          onClick={() => getForks(gist.forks_url, gist.id)}
         >
-          Open Forks
+          {gist.id === gistId ? "Close Forks" : "Open Forks"}
         </ButtonLink>
         <a href={gist.html_url} target='_blank' rel='noreferrer'>
           <Icon src={linkImg} alt='Link Chain Icon' />
