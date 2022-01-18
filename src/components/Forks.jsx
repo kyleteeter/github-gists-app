@@ -14,18 +14,16 @@ const Avatar = styled.img`
 `;
 
 export function Forks({ forks }) {
-
-  if (forks.length == 0) {
+  if (forks.length === 0) {
     return <ForksWrapper>No Forks</ForksWrapper>;
   }
-  
+
   return (
     <ForksWrapper>
       {Object.values(forks).map((fork) => {
         return (
           <>
-            {console.log(fork)}
-            <a href={fork.html_url} target='_blank'>
+            <a href={fork.html_url} target='_blank' rel='noreferrer'>
               <Avatar
                 key={fork.id}
                 src={fork.owner.avatar_url}
