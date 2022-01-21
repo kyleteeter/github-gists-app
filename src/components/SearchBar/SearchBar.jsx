@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Logo } from ".";
-import { Button, ButtonWrapper } from "../shared-components";
+import { Button, ButtonWrapper } from "../../shared-components";
 
 const SearchBarWrapper = styled.div`
   padding: 1em 0.25em;

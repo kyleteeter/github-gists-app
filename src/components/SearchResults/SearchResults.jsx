@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { CardTop, Files, Forks } from ".";
-import { HorizontalDivide } from "../shared-components";
+import { HorizontalDivide } from "../../shared-components";
 
 const SearchResultsWrapper = styled.div`
   padding: 2em 0.5em;

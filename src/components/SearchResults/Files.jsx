@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { docImg } from "../assets/";
-import { FileLink, Icon } from "../shared-components";
+import { docImg } from "../../assets/";
+import { FileLink, Icon } from "../../shared-components";
 
 const CardBottom = styled.div`
   display: flex;

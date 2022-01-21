@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { linkImg } from "../assets/";
-import { ButtonLink, Icon } from "../shared-components";
+import { linkImg } from "../../assets/";
+import { ButtonLink, Icon } from "../../shared-components";
 
 const CardSection = styled.div`
   display: flex;
