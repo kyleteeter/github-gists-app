@@ -13,26 +13,27 @@ const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-export function Forks({ forks }) {
-  if (forks.length === 0) {
+export function Forks({ forks, activeGistId }) {
+
+  if (forks[activeGistId].length === 0) {
     return <ForksWrapper>No Forks</ForksWrapper>;
   }
 
   return (
     <ForksWrapper>
-      {Object.values(forks).map((fork) => {
-        return (
-          <>
-            <a href={fork.html_url} target='_blank' rel='noreferrer'>
-              <Avatar
-                key={fork.id}
-                src={fork.owner.avatar_url}
-                alt={fork.owner.login}
-              />
-            </a>
-          </>
-        );
-      })}
+      {if ()}
+          {Object.values(forks[activeGistId]).map((fork) => {
+            return (
+                <a href={fork.html_url} target='_blank' rel='noreferrer' key={activeGistId}>
+                  {console.log('avatar', fork.owner.avatar_url)}
+                  <Avatar
+                    src={fork.owner.avatar_url}
+                    alt={fork.owner.login}
+                  />
+                </a>
+            );
+          })}
+  
     </ForksWrapper>
   );
 }

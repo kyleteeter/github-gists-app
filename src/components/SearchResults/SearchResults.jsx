@@ -21,21 +21,21 @@ const Card = styled.div`
 `;
 
 export function SearchResults({ error, isLoaded, gists }) {
-  const [forks, setForks] = useState("");
-  const [gistId, setGistId] = useState("");
+  const [forks, setForks] = useState({});
+  const [activeGistId, setActiveGistId] = useState("");
 
   const getForks = (url, id) => {
-    if (!forks) {
-      fetch(url)
-        .then((response) => response.json())
-        .then((forks) => {
-          setForks(forks);
-          setGistId(id);
-        });
-    } else {
-      setForks("");
-      setGistId("");
-    }
+    setActiveGistId(id);
+    fetch(url)
+      .then((response) => response.json())
+      .then((response) => {
+        setForks((prevState) => ({
+          ...prevState,
+          [id]: response,
+        }));
+        // setForks(prevState => forks{ ...prevState.forks, [activeGistId], forks })
+        console.log("forks", forks);
+      });
   };
 
   if (error) {
@@ -50,10 +50,14 @@ export function SearchResults({ error, isLoaded, gists }) {
       <>
         {gists.map((gist) => (
           <Card key={gist.id}>
-            <CardTop gist={gist} getForks={getForks} gistId={gistId} />
+            <CardTop
+              gist={gist}
+              getForks={getForks}
+              activeGistId={activeGistId}
+            />
             <HorizontalDivide />
             <Files files={gist.files} id={gist.id} />
-            {gist.id === gistId ? <Forks forks={forks} /> : ""}
+            <Forks forks={forks} activeGistId={activeGistId} />
           </Card>
         ))}
       </>

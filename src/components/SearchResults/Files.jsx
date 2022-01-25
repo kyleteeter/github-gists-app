@@ -39,7 +39,7 @@ export function Files({ files, id }) {
       <H4>Files</H4>
       {Object.values(files).map((file) => {
         return (
-          <CardBottom>
+          <CardBottom key={`card${id}`}>
             <Icon src={docImg} alt='Link Chain Icon' />
             <FileLink
               href={file.raw_url}
@@ -52,9 +52,7 @@ export function Files({ files, id }) {
             </FileLink>
             <Language
               style={{
-                backgroundColor: bgColor[file.language]
-                  ? bgColor[file.language]
-                  : "black",
+                backgroundColor: bgColor[file.language] || "black",
               }}
             >
               {file.language || "No Language Detected"}
