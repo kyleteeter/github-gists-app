@@ -24,7 +24,7 @@ export function SearchResults({ error, isLoaded, gists }) {
   const [forks, setForks] = useState({});
   const [activeGistId, setActiveGistId] = useState("");
 
-  const getForks = (url, id) => {
+  const getForks = (url, id) => { 
     setActiveGistId(id);
     fetch(url)
       .then((response) => response.json())
@@ -33,9 +33,11 @@ export function SearchResults({ error, isLoaded, gists }) {
           ...prevState,
           [id]: response,
         }));
-        // setForks(prevState => forks{ ...prevState.forks, [activeGistId], forks })
-        console.log("forks", forks);
       });
+  };
+
+  const removeFork = (id) => {
+    setForks(delete forks[id])
   };
 
   if (error) {
@@ -53,11 +55,12 @@ export function SearchResults({ error, isLoaded, gists }) {
             <CardTop
               gist={gist}
               getForks={getForks}
+              removeFork={removeFork}
               activeGistId={activeGistId}
             />
             <HorizontalDivide />
             <Files files={gist.files} id={gist.id} />
-            <Forks forks={forks} activeGistId={activeGistId} />
+            <Forks forks={forks} gistId={gist.id} />
           </Card>
         ))}
       </>
