@@ -26,23 +26,23 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
-export function SearchBar({clearResults, getGists}) {
+export function SearchBar({ clearResults, getGists }) {
   const [inputValue, setInputValue] = useState("");
 
   const handleReset = (event) => {
     event.preventDefault();
     setInputValue("");
     clearResults();
-  }
+  };
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     getGists(inputValue);
-  }
+  };
 
   return (
     <SearchBarWrapper>

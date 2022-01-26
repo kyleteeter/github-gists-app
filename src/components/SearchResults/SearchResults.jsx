@@ -24,7 +24,7 @@ export function SearchResults({ error, isLoaded, gists }) {
   const [forks, setForks] = useState({});
   const [activeGistId, setActiveGistId] = useState("");
 
-  const getForks = (url, id) => { 
+  const getForks = (url, id) => {
     setActiveGistId(id);
     fetch(url)
       .then((response) => response.json())
@@ -37,7 +37,9 @@ export function SearchResults({ error, isLoaded, gists }) {
   };
 
   const removeFork = (id) => {
-    setForks(delete forks[id])
+    console.log("preupdate", forks);
+    setForks(delete forks[id]);
+    console.log("postupdate", forks);
   };
 
   if (error) {

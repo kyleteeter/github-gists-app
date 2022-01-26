@@ -14,28 +14,28 @@ const Avatar = styled.img`
 `;
 
 export function Forks({ forks, gistId }) {
-
   if (!forks[gistId]) {
     return <ForksWrapper></ForksWrapper>;
   }
 
   return (
     <ForksWrapper>
-          {Object.values(forks[gistId]).map((fork) => {
-
-            if (!forks[gistId]) {
-              return <ForksWrapper>No Forks</ForksWrapper>;
-            }
-            return (
-                <a href={fork.html_url} target='_blank' rel='noreferrer'>
-                  <Avatar
-                    src={fork.owner.avatar_url}
-                    alt={fork.owner.login}
-                  />
-                </a>
-            );
-          })}
-  
+      {Object.values(forks[gistId]).map((fork) => {
+        return (
+          <a
+            href={fork.html_url}
+            target='_blank'
+            rel='noreferrer'
+            key={fork.id}
+          >
+            <Avatar
+              src={fork.owner.avatar_url}
+              alt={fork.owner.login}
+              style={{ margin: "5px" }}
+            />
+          </a>
+        );
+      })}
     </ForksWrapper>
   );
 }

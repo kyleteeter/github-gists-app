@@ -11,6 +11,7 @@ const CardSection = styled.div`
 
 const CardTopLinks = styled.div`
   margin-top: 1em;
+  display: flex;
 `;
 
 const H3 = styled.h3`
@@ -18,18 +19,16 @@ const H3 = styled.h3`
   max-width: 60%;
 `;
 
-
-
-export function CardTop({ gist, getForks, removeFork, activeGistId }) {
+export function CardTop({ gist, getForks, removeFork }) {
   const [click, setClick] = useState(0);
 
   const handleClick = (forks_url, id) => {
     if (!click) {
-      getForks(forks_url, id)
+      getForks(forks_url, id);
       setClick(1);
     }
     if (click) {
-      removeFork(id)
+      removeFork(id);
       setClick(0);
     }
   };
@@ -41,12 +40,17 @@ export function CardTop({ gist, getForks, removeFork, activeGistId }) {
         <ButtonLink
           primary
           key={`forks${gist.id}`}
-          style={{ margin: "0.75em 1em" }}
+          style={{ margin: "0em 1em" }}
           onClick={() => handleClick(gist.forks_url, gist.id)}
         >
-          {(click) ? "Close Forks" : "Open Forks" }
+          {click ? "Close Forks" : "Open Forks"}
         </ButtonLink>
-        <a href={gist.html_url} target='_blank' rel='noreferrer'>
+        <a
+          href={gist.html_url}
+          target='_blank'
+          rel='noreferrer'
+          style={{ marginTop: "0.5em" }}
+        >
           <Icon src={linkImg} alt='Link Chain Icon' />
         </a>
       </CardTopLinks>
