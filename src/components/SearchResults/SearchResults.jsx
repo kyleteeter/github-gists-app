@@ -37,7 +37,7 @@ export function SearchResults({ error, isLoaded, gists }) {
   };
 
   const removeFork = (id) => {
-    const clone = {...forks};
+    const clone = { ...forks };
     delete clone[id];
     setForks(clone);
   };
@@ -55,18 +55,18 @@ export function SearchResults({ error, isLoaded, gists }) {
         {gists.map((gist) => {
           const forksData = forks[gist.id];
           return (
-          <Card key={gist.id}>
-            <CardTop
-              gist={gist}
-              getForks={getForks}
-              removeFork={removeFork}
-            />
-            <HorizontalDivide />
-            <Files files={gist.files} id={gist.id} />
-            <Forks data={forksData} />
-          </Card>
-          )
-          })}
+            <Card key={gist.id}>
+              <CardTop
+                gist={gist}
+                getForks={getForks}
+                removeFork={removeFork}
+              />
+              <HorizontalDivide />
+              <Files files={gist.files} id={gist.id} />
+              <Forks data={forksData} />
+            </Card>
+          );
+        })}
       </>
     </SearchResultsWrapper>
   );

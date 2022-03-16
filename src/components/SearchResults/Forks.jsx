@@ -24,7 +24,6 @@ export function Forks({ data, owner }) {
 
   return (
     <ForksWrapper>
-      {console.log("forks", data)}
       <a href={data.html_url} target='_blank' rel='noreferrer' key={data.id}>
         {data.map(function (data) {
           return (
