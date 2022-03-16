@@ -13,14 +13,9 @@ const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-export function Forks({ data, owner }) {
-  if (typeof data === "undefined") {
-    return <ForksWrapper></ForksWrapper>;
-  }
-
-  if (!data.length) {
-    return <ForksWrapper>No Forks</ForksWrapper>;
-  }
+export function Forks({ data }) {
+  if (typeof data === "undefined") { return <ForksWrapper></ForksWrapper>; }
+  if (!data.length) { return <ForksWrapper>No Forks</ForksWrapper>; }
 
   return (
     <ForksWrapper>
