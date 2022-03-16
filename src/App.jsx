@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { SearchBar } from "./components/SearchBar/";
-import { SearchResults } from "./components/SearchResults/";
+import { SearchBar } from "./components";
+import { SearchResults } from "./components";
 import { HorizontalDivide } from "./shared-components";
 import './assets/css/fonts.css';
 

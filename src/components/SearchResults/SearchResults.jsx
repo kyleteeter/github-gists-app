@@ -52,19 +52,21 @@ export function SearchResults({ error, isLoaded, gists }) {
   return (
     <SearchResultsWrapper>
       <>
-        {gists.map((gist) => (
+        {gists.map((gist) => {
+          const forksData = forks[gist.id];
+          return (
           <Card key={gist.id}>
             <CardTop
               gist={gist}
               getForks={getForks}
               removeFork={removeFork}
-              activeGistId={activeGistId}
             />
             <HorizontalDivide />
             <Files files={gist.files} id={gist.id} />
-            <Forks forks={forks} gistId={gist.id} />
+            <Forks data={forksData} />
           </Card>
-        ))}
+          )
+          })}
       </>
     </SearchResultsWrapper>
   );
