@@ -37,9 +37,9 @@ export function SearchResults({ error, isLoaded, gists }) {
   };
 
   const removeFork = (id) => {
-    console.log("preupdate", forks);
-    setForks(delete forks[id]);
-    console.log("postupdate", forks);
+    const clone = {...forks};
+    delete clone[id];
+    setForks(clone);
   };
 
   if (error) {
