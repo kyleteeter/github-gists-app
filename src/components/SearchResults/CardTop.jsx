@@ -20,16 +20,16 @@ const H3 = styled.h3`
 `;
 
 export function CardTop({ gist, getForks, removeFork }) {
-  const [click, setClick] = useState(0);
+  const [click, setClick] = useState(false);
 
   const handleClick = (forks_url, id) => {
     if (!click) {
       getForks(forks_url, id);
-      setClick(1);
+      setClick(true);
     }
     if (click) {
       removeFork(id);
-      setClick(0);
+      setClick(false);
     }
   };
 
