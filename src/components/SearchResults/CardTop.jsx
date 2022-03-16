@@ -20,16 +20,16 @@ const H3 = styled.h3`
 `;
 
 export function CardTop({ gist, getForks, removeFork }) {
-  const [click, setClick] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const handleClick = (forks_url, id) => {
-    if (!click) {
+    if (!isButtonClicked) {
       getForks(forks_url, id);
-      setClick(true);
+      setIsButtonClicked(true);
     }
-    if (click) {
+    if (isButtonClicked) {
       removeFork(id);
-      setClick(false);
+      setIsButtonClicked(false);
     }
   };
 
@@ -43,7 +43,7 @@ export function CardTop({ gist, getForks, removeFork }) {
           style={{ margin: "0em 1em" }}
           onClick={() => handleClick(gist.forks_url, gist.id)}
         >
-          {click ? "Close Forks" : "Open Forks"}
+          {isButtonClicked ? "Close Forks" : "Open Forks"}
         </ButtonLink>
         <a
           href={gist.html_url}
