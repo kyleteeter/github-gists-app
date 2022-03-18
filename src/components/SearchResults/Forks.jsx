@@ -14,7 +14,7 @@ const Avatar = styled.img`
 `;
 
 export function Forks({ data }) {
-  if (typeof data === "undefined") { return <ForksWrapper></ForksWrapper>; }
+  if (!data) { return <ForksWrapper></ForksWrapper>; }
   if (!data.length) { return <ForksWrapper>No Forks</ForksWrapper>; }
 
   return (
