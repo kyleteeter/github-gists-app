@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Logo } from ".";
-import { Button, ButtonWrapper } from "../shared-components";
+import { Button, ButtonWrapper } from "../../shared-components";
 
 const SearchBarWrapper = styled.div`
   padding: 1em 0.25em;
@@ -26,23 +26,23 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
-export function SearchBar({clearResults, getGists}) {
+export function SearchBar({ clearResults, getGists }) {
   const [inputValue, setInputValue] = useState("");
 
-  function handleReset(event) {
+  const handleReset = (event) => {
     event.preventDefault();
     setInputValue("");
     clearResults();
-  }
+  };
 
-  function handleChange(event) {
+  const handleChange = (event) => {
     setInputValue(event.target.value);
-  }
+  };
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     getGists(inputValue);
-  }
+  };
 
   return (
     <SearchBarWrapper>

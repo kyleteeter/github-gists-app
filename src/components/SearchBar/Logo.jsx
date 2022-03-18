@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { logoImg } from "../assets/";
+import { logoImg } from "../../assets/";
 
 const LogoWrapper = styled.div`
   padding-top: 0.3em;

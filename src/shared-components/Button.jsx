@@ -19,7 +19,7 @@ export const Button = styled.button`
   }
 `;
 
-export const ButtonLink = styled.a`
+export const ButtonLink = styled.button`
   background: #2ea44e;
   color: white;
   text-decoration: none;
